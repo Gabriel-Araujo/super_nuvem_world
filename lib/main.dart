@@ -6,8 +6,15 @@ import 'package:super_nuvem_world/nuvem_game.dart';
 void main() async {
   Util flameUtil = Util();
   await flameUtil.fullScreen();
-  await flameUtil.setOrientation(DeviceOrientation.landscapeLeft);
-
-  NuvemGame game = NuvemGame();
-  runApp(game.widget);
+  await flameUtil.setLandscapeLeftOnly();
+  
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.landscapeLeft
+  ]).then((_) {
+    NuvemGame game = NuvemGame();
+    runApp(game.widget);
+  }
+  );
+  
+  
 }

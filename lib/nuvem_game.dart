@@ -63,11 +63,13 @@ class NuvemGame extends Game with TapDetector, SecondaryTapDetector, PanDetector
     score = 0;
     bestScore = 0;
 
+    
+
     restart();
   }
 
   void spawnBats() {
-    if(lastMobSpawn > 1 && mobs.length <= 12) {
+    if(lastMobSpawn > 2 && mobs.length <= 12) {
       lastMobSpawn = 0;
 
       var r = random.nextInt(100);
@@ -270,7 +272,7 @@ class NuvemGame extends Game with TapDetector, SecondaryTapDetector, PanDetector
       else if(globalPosition.dx >= screenSize.width - 150 && globalPosition.dy >= screenSize.height - 250 && globalPosition.dy <= screenSize.height - 100)
         tapAction();
     } else if(gameOver && 
-      globalPosition.dx >= screenSize.width/2 - 200 && globalPosition.dx <= screenSize.width/2 + 200 &&
+      globalPosition.dx >= screenSize.width/2 - 100 && globalPosition.dx <= screenSize.width/2 + 100 &&
       globalPosition.dy >= screenSize.height/2 - 100 && globalPosition.dy <= screenSize.height/2 + 100) {
       restart();
     } else {
