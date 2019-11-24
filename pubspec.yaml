@@ -50,6 +50,8 @@ flutter:
     - assets/images/pad_jump.png
     - assets/images/pad_action.png
     - assets/images/tile_h1.png
+    - assets/images/tile_v1.png
+    - assets/images/effect_explosion.png
     - assets/images/effect_energy_ball_right.png
     - assets/images/effect_energy_ball_left.png
     - assets/images/skin_baby_idle_right.png

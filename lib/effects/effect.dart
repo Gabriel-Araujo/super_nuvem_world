@@ -4,6 +4,7 @@ import 'package:flame/position.dart';
 import 'package:flame/animation.dart' as flame_animation;
 import 'package:super_nuvem_world/engine/collision_box.dart';
 import 'package:super_nuvem_world/engine/game_object.dart';
+import 'package:super_nuvem_world/nuvem_game.dart';
 
 class Effect extends GameObject {
   
@@ -16,15 +17,22 @@ class Effect extends GameObject {
   double stepTime;
   double gameTime;
 
+  get effectTime => this.amountSequence * this.stepTime;
+
+  bool visible;
+
   CollisionBox collisionBox;
 
   flame_animation.Animation animation;
 
   final double maxVelocity = 3;
+  final NuvemGame game;
 
-  Effect(this.gameTime, this.nameFile, this.amountSequence, this.textureWidth, this.textureHeight, this.stepTime, double x, double y) : super(GameObjectType.effect) {
+  Effect(this.game, this.nameFile, this.amountSequence, this.textureWidth, this.textureHeight, this.stepTime, double x, double y) : super(GameObjectType.effect) {
     this.x = x;
     this.y = y;
+    this.gameTime = game.timePlaying;
+    this.visible = true;
 
     animation = flame_animation.Animation.sequenced(
       nameFile, amountSequence,
@@ -35,7 +43,8 @@ class Effect extends GameObject {
 
   @override
   void render(Canvas c) {
-    animation.getSprite().renderPosition(c, this.toPosition());
+    if(visible)
+      animation.getSprite().renderPosition(c, this.toPosition());
 
     //super.render(c);
 
@@ -45,10 +54,12 @@ class Effect extends GameObject {
 
   @override
   void update(double t) {
-    animation.update(t);
+    if(visible) {
+      animation.update(t);
 
-    updateCollisionBox();
-    super.update(t);
+      updateCollisionBox();
+      super.update(t);
+    }
   }
 
   void updateCollisionBox() {

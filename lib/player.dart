@@ -9,6 +9,8 @@ import 'package:super_nuvem_world/engine/collision_box.dart';
 import 'package:super_nuvem_world/engine/game_object.dart';
 import 'package:super_nuvem_world/nuvem_game.dart';
 import 'package:super_nuvem_world/engine/collision_utils.dart';
+import 'package:super_nuvem_world/plataforms/tile_h1.dart';
+import 'package:super_nuvem_world/plataforms/tile_v1.dart';
 
 class Player extends GameObject {
   PlayerSkin skin;
@@ -55,9 +57,6 @@ class Player extends GameObject {
     
     sprite.renderPosition(c, position);
     super.render(c);
-    
-    if(game.debugMode)
-      super.renderDebugMode(c);
   }
 
   @override
@@ -118,7 +117,7 @@ class Player extends GameObject {
       if(velocity.x > maxVelocity || velocity.x < maxVelocity * -1)
         velocity = Position(maxVelocity * value, velocity.y);
 
-    } else { //if(state != PlayerState.idle) {
+    } else {
       state = PlayerState.falling;
       velocity = Position(0, velocity.y);
     }
@@ -146,9 +145,17 @@ class Player extends GameObject {
       if(boxCompare(this.collisionBox, plataform.collisionBox)){
         print("i found a plataform" + DateTime.now().toString() );
         
-        position.y -= 1;
+        if(plataform is TileH1) {
+          position.y -= 1;
+          state = PlayerState.idle;
+        }
+
+        if(plataform is TileV1) {
+          position.x += (goingRight) ? -6 : 6;
+          state = PlayerState.falling;
+        }
+        
         velocity = Position(0, 0);
-        state = PlayerState.idle;
       }
     }
   }
@@ -166,8 +173,8 @@ class Player extends GameObject {
   void action() {
     print('action!');
 
-    if(this.game.effects.length == 0)
-      this.game.effects.add(new EnergyBall(this.game.timePlaying, goingRight ? position.x + 12 : position.x - 22, position.y + 12, goingRight));
+    if((this.game.effects.length == 0) || (this.game.timePlaying > this.game.effects.last.gameTime + 0.7))
+      this.game.effects.add(new EnergyBall(this.game, goingRight ? position.x + 12 : position.x - 22, position.y + 12, goingRight));
   }
 }
 

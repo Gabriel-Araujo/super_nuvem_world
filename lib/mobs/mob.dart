@@ -28,7 +28,9 @@ class Mob extends GameObject {
 
   final NuvemGame game;
 
-  Mob(this.game, this.nameFile, this.amountSequence, this.textureWidth, this.textureHeight, this.stepTime, this.position) : super(GameObjectType.mob) {
+  int scoreValue;
+
+  Mob(this.game, this.nameFile, this.amountSequence, this.textureWidth, this.textureHeight, this.stepTime, this.position, this.scoreValue) : super(GameObjectType.mob) {
   
     animation = flame_animation.Animation.sequenced(
       nameFile, amountSequence,

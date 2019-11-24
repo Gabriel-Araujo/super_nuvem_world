@@ -37,9 +37,6 @@ class Plataform extends GameObject {
     sprite.renderPosition(c, position);
 
     super.render(c);
-
-    if(game.debugMode)
-      super.renderDebugMode(c);
   }
 
   @override
