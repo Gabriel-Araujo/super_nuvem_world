@@ -10,11 +10,9 @@ void main() async {
   
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.landscapeLeft
-  ]).then((_) {
-    NuvemGame game = NuvemGame();
-    runApp(game.widget);
-  }
+    ]).then((_) {
+      NuvemGame game = NuvemGame();
+      runApp(game.widget);
+    }
   );
-  
-  
 }

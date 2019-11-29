@@ -122,10 +122,17 @@ class NuvemGame extends Game with TapDetector, SecondaryTapDetector, PanDetector
     padJump.renderPosition(canvas, new Position(screenSize.width - 250, screenSize.height - 125));
     padAction.renderPosition(canvas, new Position(screenSize.width - 150, screenSize.height - 225));
 
-    if(gameOver)
+    if(gameOver) {
+      Rect bgRect = Rect.fromLTWH(
+        screenSize.width/3 - 100, screenSize.height/3 - 100, 
+        screenSize.width/2 + 50, screenSize.height/3 + 100);
+      Paint bgPaint = Paint();
+      bgPaint.color = Color(0xFF000000);
+      canvas.drawRect(bgRect, bgPaint);
       gameOverText.render(canvas);
-    else
+    } else {
       scoreText.render(canvas);
+    }
   }
 
   void update(double t) {
@@ -272,8 +279,8 @@ class NuvemGame extends Game with TapDetector, SecondaryTapDetector, PanDetector
       else if(globalPosition.dx >= screenSize.width - 150 && globalPosition.dy >= screenSize.height - 250 && globalPosition.dy <= screenSize.height - 100)
         tapAction();
     } else if(gameOver && 
-      globalPosition.dx >= screenSize.width/2 - 100 && globalPosition.dx <= screenSize.width/2 + 100 &&
-      globalPosition.dy >= screenSize.height/2 - 100 && globalPosition.dy <= screenSize.height/2 + 100) {
+        globalPosition.dx >= screenSize.width/3 - 100 && globalPosition.dx <= screenSize.width - 250 &&
+        globalPosition.dy >= 50 && globalPosition.dy <= screenSize.height - 150) {
       restart();
     } else {
       print(globalPosition);
