@@ -143,8 +143,6 @@ class Player extends GameObject {
     
     for (var plataform in game.plataforms) {
       if(boxCompare(this.collisionBox, plataform.collisionBox)){
-        print("i found a plataform" + DateTime.now().toString() );
-        
         if(plataform is TileH1) {
           position.y -= 1;
           state = PlayerState.idle;
@@ -193,9 +191,9 @@ enum PlayerSkin {
   baby,
   gabriel,
   jossan,
-  //luan,
-  //piccin,
-  //ronan,
-  //vh,
-  //willian,
+  luan,
+  piccin,
+  ronan,
+  vh,
+  willian,
 }

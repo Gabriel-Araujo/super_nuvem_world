@@ -61,10 +61,15 @@ flutter:
     - assets/images/skin_jossan_idle_right.png
     - assets/images/skin_jossan_idle_left.png
     - assets/images/skin_luan_idle_right.png
+    - assets/images/skin_luan_idle_left.png
     - assets/images/skin_piccin_idle_right.png
+    - assets/images/skin_piccin_idle_left.png
     - assets/images/skin_ronan_idle_right.png
+    - assets/images/skin_ronan_idle_left.png
     - assets/images/skin_vh_idle_right.png
+    - assets/images/skin_vh_idle_left.png
     - assets/images/skin_william_idle_right.png
+    - assets/images/skin_william_idle_left.png
     - assets/images/mob_bat_red.png
     - assets/images/mob_bat.png
 
